@@ -1,0 +1,12 @@
+{
+  "name": "fontMinChange",
+  "version": "0.0.1",
+  "description": "fontMini",
+  "main": "index.js",
+  "repository": "git@github.com:bigzjk/fontMinChange.git",
+  "author": "alkun<bigzjk@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fontmin": "^0.9.8"
+  }
+}

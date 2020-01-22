@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./output/HuawenXingkai.css">
+    <title>Document</title>
+    <style>
+        p {
+            font-family: 'STXingkai';
+        }
+    </style>
+</head>
+
+<body>
+    <p>君不见 黄河之水天上来</p>
+    <p>奔流到海不复回</p>
+    <p>君不见 高堂明镜悲白发</p>
+    <p>朝如青丝暮成雪</p>
+    <p>君不见 黄河之水天上来</p>
+    <p>奔流到海不复回</p>
+    <p>君不见 高堂明镜悲白发</p>
+    <p>朝如青丝暮成雪</p>
+    <p>人生得意须尽欢 莫使金樽空对月</p>
+    <p>天生我材必有用 千金散尽还复来</p>
+    <h2>3秒后，把mini库替换成大的</h2>
+    <p>下面这些字不在字库里面，如果需要添加进来，请把这些字写进src/下面的.txt文件中</p>
+</body>
+<script>
+
+    /**
+     * @param {Object} obj {}
+            {
+                cssValue: "字体库别名"，
+                url: '绝对路径'
+            }
+     */
+    async function loadFont(obj) {
+        try {
+            // if (document.fonts && !checkFont(obj.cssValue)) {
+            if (document.fonts) {
+                let that = this;
+                let fontFamily = obj.cssValue;
+                let fontFace = new FontFace(obj.cssValue, `local('${obj.cssValue}'),url('${obj.url}') format('ttf'),url('${obj.url}')`);
+                await fontFace.load();
+                document.fonts.add(fontFace);
+                // fontFace.load().then(function (loadedFontFace) {
+                //   document.fonts.add(loadedFontFace);
+                //   that.canvasDemo.updateTextFontFamily(fontFamily);
+                // }).catch(e => {
+                //   console.log('dsada', e)
+                // })
+            }
+        } catch (e) {
+            console.log('fontLoad-error', e)
+        }
+    }
+    //检测字体文件是否已加载，不适用本项目场景
+    function checkFont(name) {
+        let values = document.fonts.values();
+        let isHave = false;
+        let item = values.next();
+        while (!item.done && !isHave) {
+            console.log('itemitemitem', item)
+            let fontFace = item.value;
+            // console.log('font====', fontFace.family)
+            // if (fontFace.family == name) {
+            //   isHave = true;
+            // }
+            item = values.next();
+        }
+        console.log('isHave', isHave)
+        return isHave;
+    }
+    setTimeout(() => {
+        loadFont({
+            cssValue: 'STXingkai',
+            url: './assets/HuawenXingkai.ttf',
+        })
+    }, 3000)
+</script>
+</html>
